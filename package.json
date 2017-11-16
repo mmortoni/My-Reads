@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "create-react-class": "^15.6.2",
+    "domkit": "^0.0.1",
     "history": "^4.7.2",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
