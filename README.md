@@ -29,13 +29,12 @@ npm start
 ![Estante de livros](public/bookshelf.png?raw=true "Estante de livros")
 
 ###### Routing      
-- [x] A página principal conecta-se à página de busca?
-- [x] A página de busca conecta-se de volta à página principal?
+- [x] A página principal conecta-se à página de busca.
+- [x] A página de busca conecta-se de volta à página principal.
 
 ![Routing](public/routing.png?raw=true "Routing")
 
 ###### Extras
-- [x] Modal de informações sobre o livro na Estante ou na Pesquisa
+- [x] Modal de informações sobre o livro na Estante ou na Pesquisa - clicar na imagem do livro
 - [x] Link Google Books
-- [x] [Halogen](https://github.com/yuanyan/halogen){:target="_blank"} is being used to show the loading indicator.
-
+- [x] <a href="https://github.com/yuanyan/halogen" target="_blank">Halogen</a> usado para mostrar o indicador de carregamento.
