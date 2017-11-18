@@ -10,6 +10,7 @@ import * as BooksAPI from '../../api/BooksAPI'
 import Book from '../../model/Book'
 import ConstantsList from '../../util/constants'
 import BookInfoModal from '../../templates/Templates'
+import Loader from '../../components/GridLoader'
 
 class Searchpage extends React.Component {
   constructor(props) {
@@ -79,7 +80,7 @@ class Searchpage extends React.Component {
         </div>
 
         <div className="search-books-results">
-          { searchLoading && <div className="loader">Loading search results...</div> } <br />
+          <Loader loading={ searchLoading } color="#2e7c31" size="16px" margin="4px" className="loader" />
           <div className="loader">{ (Object.prototype.toString.call(results) === '[object Array]') ? `Showing ${ books.length } results` : '' }<br /><br /></div>
           <div className="loader">{ (Object.prototype.toString.call(results) === '[object Object]') ? `No results` : '' }<br /><br /></div>
           <ol className="books-grid">

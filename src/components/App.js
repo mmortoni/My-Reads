@@ -54,7 +54,7 @@ class BooksApp extends React.Component {
 
     return (
       <div className="app">
-        <Router history={history}>
+        <Router history={ history }>
           <Switch>
             <Route
               path='/search'
@@ -79,7 +79,7 @@ class BooksApp extends React.Component {
         </Router>
 
         <SkyLight dialogStyles={ ConstantsList.BIGGREENDIALOG } hideOnOverlayClicked ref={ ref => this.animated = ref }>
-          <BookInfoModal selected={selected} />
+          <BookInfoModal selected={ selected } />
         </SkyLight>
       </div>
     )

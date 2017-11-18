@@ -5,6 +5,10 @@ var assign = require('domkit/appendVendorPrefix');
 var insertKeyframesRule = require('domkit/insertKeyframesRule');
 
 /**
+ * https://github.com/yuanyan/halogen
+ */
+
+/**
  * @type {Object}
  */
 var keyframes = {
