@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 //Components
-import Loader from './halogen/GridLoader'
+import Loader from '../components/GridLoader'
 import Shelf from './Shelf'
-import Shelves from './helpers/Shelves'
+import ConstantsList from '../util/constants'
 
 const BookShelf = (props) => {
     const { books, loadState, moveToShelf, showModal } = props
@@ -17,7 +17,7 @@ const BookShelf = (props) => {
             </div>
 
             <div className="list-books-content">
-                {Shelves.map(item => (
+                { ConstantsList.SHELVES.map(item => (
                     <div key={ item.id } className="bookshelf">
                         <h2 className="bookshelf-title">{ item.description }</h2>
                         <Loader loading={ loadState } color="#2e7c31" size="16px" margin="4px" className="loader" />
@@ -27,7 +27,7 @@ const BookShelf = (props) => {
                             </ol>
                         </div>
                     </div>
-                ))}
+                )) }
            </div>
 
             <div className="open-search">

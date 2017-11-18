@@ -1,5 +1,3 @@
-'use strict';
-
 var React = require('react');
 var createReactClass = require('create-react-class');
 var PropTypes = require('prop-types');
@@ -9,33 +7,32 @@ var insertKeyframesRule = require('domkit/insertKeyframesRule');
 /**
  * @type {Object}
  */
-var rotateKeyframes = {
-    '100%': {
-        transform: 'rotate(360deg)'
-    }
-};
-
-/**
- * @type {Object}
- */
-var bounceKeyframes = {
-    '0%, 100%': {
-        transform: 'scale(0)'
+var keyframes = {
+    '0%': {
+        transform: 'scale(1)'
     },
     '50%': {
-        transform: 'scale(1.0)'
+        transform: 'scale(0.5)',
+        opacity: 0.7
+    },
+    '100%': {
+        transform: 'scale(1)',
+        opacity: 1
     }
 };
 
 /**
  * @type {String}
  */
-var rotateAnimationName = insertKeyframesRule(rotateKeyframes);
+var animationName = insertKeyframesRule(keyframes);
 
 /**
- * @type {String}
+ * @param  {Number} top
+ * @return {Number}
  */
-var bounceAnimationName = insertKeyframesRule(bounceKeyframes);
+function random(top) {
+    return Math.random() * top;
+}
 
 var Loader = createReactClass({
     displayName: 'Loader',
@@ -57,19 +54,20 @@ var Loader = createReactClass({
         return {
             loading: true,
             color: '#ffffff',
-            size: '60px'
+            size: '15px',
+            margin: '2px'
         };
     },
 
     /**
-     * @param  {String} size
      * @return {Object}
      */
-    getBallStyle: function getBallStyle(size) {
+    getBallStyle: function getBallStyle() {
         return {
             backgroundColor: this.props.color,
-            width: size,
-            height: size,
+            width: this.props.size,
+            height: this.props.size,
+            margin: this.props.margin,
             borderRadius: '100%',
             verticalAlign: this.props.verticalAlign
         };
@@ -80,8 +78,11 @@ var Loader = createReactClass({
      * @return {Object}
      */
     getAnimationStyle: function getAnimationStyle(i) {
-        var animation = [i == 0 ? rotateAnimationName : bounceAnimationName, '2s', i == 2 ? '-1s' : '0s', 'infinite', 'linear'].join(' ');
-        var animationFillMode = 'forwards';
+        var animationDuration = random(100) / 100 + 0.6 + 's';
+        var animationDelay = random(100) / 100 - 0.2 + 's';
+
+        var animation = [animationName, animationDuration, animationDelay, 'infinite', 'ease'].join(' ');
+        var animationFillMode = 'both';
 
         return {
             animation: animation,
@@ -94,21 +95,8 @@ var Loader = createReactClass({
      * @return {Object}
      */
     getStyle: function getStyle(i) {
-        var size = parseInt(this.props.size);
-        var ballSize = size / 2;
-
-        if (i) {
-            return assign(this.getBallStyle(ballSize), this.getAnimationStyle(i), {
-                position: 'absolute',
-                top: i % 2 ? 0 : 'auto',
-                bottom: i % 2 ? 'auto' : 0
-            });
-        }
-
-        return assign(this.getAnimationStyle(i), {
-            width: size,
-            height: size,
-            position: 'relative'
+        return assign(this.getBallStyle(i), this.getAnimationStyle(i), {
+            display: 'inline-block'
         });
     },
 
@@ -118,14 +106,26 @@ var Loader = createReactClass({
      */
     renderLoader: function renderLoader(loading) {
         if (loading) {
+            var style = {
+                width: parseFloat(this.props.size) * 3 + parseFloat(this.props.margin) * 6,
+                fontSize: 0
+            };
+
             return React.createElement(
                 'div',
                 { id: this.props.id, className: this.props.className },
                 React.createElement(
                     'div',
-                    { style: this.getStyle(0) },
+                    { style: style },
                     React.createElement('div', { style: this.getStyle(1) }),
-                    React.createElement('div', { style: this.getStyle(2) })
+                    React.createElement('div', { style: this.getStyle(2) }),
+                    React.createElement('div', { style: this.getStyle(3) }),
+                    React.createElement('div', { style: this.getStyle(4) }),
+                    React.createElement('div', { style: this.getStyle(5) }),
+                    React.createElement('div', { style: this.getStyle(6) }),
+                    React.createElement('div', { style: this.getStyle(7) }),
+                    React.createElement('div', { style: this.getStyle(8) }),
+                    React.createElement('div', { style: this.getStyle(9) })
                 )
             );
         }

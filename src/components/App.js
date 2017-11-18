@@ -3,16 +3,15 @@ import { Router, Route, Switch } from 'react-router-dom'
 import createHistory from 'history/createBrowserHistory'
 
 import SkyLight from 'react-skylight'
-import Stars from 'react-stars'
 
 //Components
-import * as BooksAPI from './BooksAPI'
-import Searchpage from './Searchpage'
-import BookShelf from './components/BookShelf'
-import ConstantsList from './components/helpers/constants'
-import BookModal from './components/helpers/Templates'
+import * as BooksAPI from '../api/BooksAPI'
+import Searchpage from '../pages/search/Searchpage'
+import BookShelf from '../model/BookShelf'
+import ConstantsList from '../util/constants'
+import BookInfoModal from '../templates/Templates'
 
-import './App.css'
+import '../style/App.css'
 
 const history = createHistory()
 
@@ -20,8 +19,6 @@ class BooksApp extends React.Component {
   state = {
     books: [],
     loading: true,
-    searchLoading: false,
-    results: [],
     selected: {}
   }
 
@@ -44,19 +41,6 @@ class BooksApp extends React.Component {
     })
   }
 
-  search = (query, maxResults) => {
-    this.setState({
-      searchLoading: true
-    })
-
-    BooksAPI.search(query, maxResults).then(results => {
-      this.setState({
-        searchLoading: false,
-        results: results
-      })
-    })
-  }
-
   showModal = (id) => {
     this.setState({
       selected: this.state.books.find(book => book.id === id)
@@ -66,7 +50,7 @@ class BooksApp extends React.Component {
   }
 
   render() {
-    const { books, loading, searchLoading, results, selected } = this.state
+    const { books, loading, selected } = this.state
 
     return (
       <div className="app">
@@ -76,10 +60,7 @@ class BooksApp extends React.Component {
               path='/search'
               render={() => (
                 <Searchpage
-                  search={this.search}
-                  searchLoading={searchLoading}
-                  results={results}
-                  moveToShelf={this.moveToShelf}
+                  moveToShelf={ this.moveToShelf }
                 />
               )}
             />
@@ -87,20 +68,20 @@ class BooksApp extends React.Component {
               exact path='/'
               render={() => (
                 <BookShelf
-                  books={books}
-                  loadState={loading}
-                  moveToShelf={this.moveToShelf}
-                  showModal={this.showModal}
+                  books={ books }
+                  loadState={ loading }
+                  moveToShelf={ this.moveToShelf }
+                  showModal={ this.showModal }
                 />
               )}
             />
           </Switch>
         </Router>
 
-        <SkyLight dialogStyles={ ConstantsList.BIGGREENDIALOG } hideOnOverlayClicked ref={ref => this.animated = ref}>
-          <BookModal selected={ selected } />
+        <SkyLight dialogStyles={ ConstantsList.BIGGREENDIALOG } hideOnOverlayClicked ref={ ref => this.animated = ref }>
+          <BookInfoModal selected={selected} />
         </SkyLight>
-    </div>
+      </div>
     )
   }
 }

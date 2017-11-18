@@ -51,7 +51,7 @@ body, .app {
   height: 50px;
   border-radius: 50%;
   background: #2e7d32;
-  background-image: url('./icons/add.svg');
+  background-image: url('../icons/add.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 28px;
@@ -87,7 +87,7 @@ body, .app {
   width: 50px;
   height: 53px;
   background: white;
-  background-image: url('./icons/arrow-back.svg');
+  background-image: url('../icons/arrow-back.svg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: 28px;
@@ -138,7 +138,7 @@ body, .app {
   height: 40px;
   border-radius: 50%;
   background: #60ac5d;
-  background-image: url('./icons/arrow-drop-down.svg');
+  background-image: url('../icons/arrow-drop-down.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20px;
@@ -185,26 +185,13 @@ div.absolute {
 div.text {
   font-size: 14px;  
 } 
-.text {
-  position: relative;
-  font-size: 14px;
-  color: black;
-  width: 100%; /* Could be anything you like. */
-}
-.text-concat {
-  position: relative;
-  display: inline-block;
-  word-wrap: break-word;
-  overflow: hidden;
-  max-height: 13.6em; /* (Number of lines you want visible) * (line-height) */
-  line-height: 1.2em;
-  text-align:justify;
-}
-.text.ellipsis::after {
-  content: "...";
-  position: absolute;
-  right: 0px; 
-  bottom: 4px;
+.big-green-dialog {
+  backgroundColor: '#00897B';
+  color: '#ffffff';
+  width: '70%';
+  height: '600px';
+  marginTop: '-300px';
+  marginLeft: '-35%';
 }
 .ellipsis {
   overflow: hidden;

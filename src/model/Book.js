@@ -10,7 +10,7 @@ const Book = (props) => {
                 <div className="book-top">
                     <div onClick={() => showModal(book.id)} 
                         className="book-cover" 
-                        style={ { width: 128, height: 193,backgroundImage: `url(${ book.imageLinks ? book.imageLinks.thumbnail : "%PUBLIC_URL%/blank.jpg" })` } }>
+                        style={ { width: 128, height: 193,backgroundImage: `url(${ book.imageLinks ? book.imageLinks.thumbnail : process.env.PUBLIC_URL + "/blank.jpg" })` } }>
                     </div>
                 
                     <div className="book-shelf-changer">
