@@ -8,6 +8,11 @@ Para executar este aplicativo, você precisará do seguinte:
 * Linha de comando (Windows: cmd / Mac: terminal)
 * YARN ou NPM
 
+### Início
+
+1. Clone este repositório: `git clone https://github.com/mmortoni/My-Reads.git`
+2. Mover para a pasta: `cd My-Reads`.<br />
+
 Para executar:
 
 ```
